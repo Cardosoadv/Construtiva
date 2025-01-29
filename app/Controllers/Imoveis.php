@@ -61,7 +61,7 @@ class Imoveis extends BaseController
 
                 $model->insert($data);
                 $id = $model->getInsertID();
-                return redirect()->to(base_url('imóveis/editar/' . $id))
+                return redirect()->to(base_url('imoveis/editar/' . $id))
                                 ->with('success', 'Imóvel salvo com sucesso');
             }
 
@@ -78,7 +78,7 @@ class Imoveis extends BaseController
         $data = [
             'titulo'    => 'Editar Dados do Imóvel',
         ];
-        $data['imoveis'] = model('ImovelModel')->find($id);
+        $data['imovel'] = model('ImovelModel')->find($id);
 
         Session()->set(['msg'=> null]);
 

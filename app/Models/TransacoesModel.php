@@ -10,9 +10,18 @@ class TransacoesModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+                                    'tipo', //'Venda', 'Transferencia', 'Troca', 'Devolução', 'Venda', // Valor padrão
+                                    'data',
+                                    'num_parcelas',
+                                    'num_parcelas_pagas',
+                                    'dt_minuta',
+                                    'clientes',
+                                    'imovel',
+                                ];
+
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +30,7 @@ class TransacoesModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

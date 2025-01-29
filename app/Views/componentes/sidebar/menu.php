@@ -1,4 +1,4 @@
-<?php 
+<?php
 $uri = service('uri');
 $active = $uri->getSegment(1);
 ?>
@@ -11,45 +11,24 @@ $active = $uri->getSegment(1);
         </a>
     </li>
 
-        <li class="nav-item <?= ($active === 'clientes') ? 'active' : ''; ?>">
-            <a href="<?= site_url('clientes'); ?>" class="nav-link">
-                <i class="nav-icon bi bi-person-gear"></i> <p>Clientes</p>
-            </a>
-        </li>
+    <li class="nav-item <?= ($active === 'clientes') ? 'active' : ''; ?>">
+        <a href="<?= site_url('clientes'); ?>" class="nav-link">
+            <i class="nav-icon bi bi-person-gear"></i>
+            <p>Clientes</p>
+        </a>
+    </li>
 
-        <li class="nav-item <?= ($active === 'processos') ? 'active' : ''; ?>">
-            <a href="<?= site_url('processos'); ?>" class="nav-link">
-                <i class="nav-icon bi bi-bank"></i> <p>Processos</p>
-            </a>
-        </li>
+    <li class="nav-item <?= ($active === 'imoveis') ? 'active' : ''; ?>">
+        <a href="<?= site_url('imoveis'); ?>" class="nav-link">
+            <i class="nav-icon bi bi-bank"></i>
+            <p>Imoveis</p>
+        </a>
+    </li>
 
-        <li class="nav-item <?= in_array($active, ['intimacoes', 'receberintimacoes', 'receberintimacoesjs']) ? 'menu-is-opening menu-open' : ''; ?>">
-            <a href="<?= site_url('intimacoes'); ?>" class="nav-link <?= ($active === 'intimacoes') ? 'active' : ''; ?>">
-                <i class="nav-icon bi bi-cloud-arrow-down"></i>
-                <p>Intimacoes <i class="nav-arrow bi bi-chevron-right"></i></p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="<?= site_url('intimacoes/receberintimacoes'); ?>" class="nav-link <?= ($active === 'receberintimacoes') ? 'active' : ''; ?>">
-                        <i class="nav-icon bi bi-circle"></i><p>Receber Intimacoes</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= site_url('intimacoes/receberintimacoesfabiano'); ?>" class="nav-link <?= ($active === 'receberintimacoes') ? 'active' : ''; ?>">
-                        <i class="nav-icon bi bi-circle"></i><p>Receber Intimacoes Fabiano</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= site_url('intimacoesjs'); ?>" class="nav-link <?= ($active === 'receberintimacoesjs') ? 'active' : ''; ?>">
-                        <i class="nav-icon bi bi-circle"></i><p>Receber Intimacoes JS</p>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="nav-item <?= ($active === 'tarefas') ? 'active' : ''; ?>">
-            <a href="<?= site_url('tarefas'); ?>" class="nav-link">
-                <i class="nav-icon bi bi-check2-square"></i><p>Tarefas</p>
-            </a>
-        </li>
+    <li class="nav-item <?= ($active === 'transacoes') ? 'active' : ''; ?>">
+        <a href="<?= site_url('transacoes'); ?>" class="nav-link">
+            <i class="nav-icon bi bi-arrow-left-right"></i>
+            <p>Transacoes</p>
+        </a>
+    </li>
 </ul>
