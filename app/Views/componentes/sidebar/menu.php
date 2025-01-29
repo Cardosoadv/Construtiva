@@ -1,16 +1,6 @@
 <?php 
-/**
- * Lógica necessária ao funcionamento do menu lateral
- */
-
-use App\Libraries\Permissions;
-
 $uri = service('uri');
 $active = $uri->getSegment(1);
-
-$permitions = new Permissions();
-$permission = $permitions->permission();
-
 ?>
 
 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
@@ -21,24 +11,18 @@ $permission = $permitions->permission();
         </a>
     </li>
 
-    <?php if ($permission['clientes']): ?>
         <li class="nav-item <?= ($active === 'clientes') ? 'active' : ''; ?>">
             <a href="<?= site_url('clientes'); ?>" class="nav-link">
                 <i class="nav-icon bi bi-person-gear"></i> <p>Clientes</p>
             </a>
         </li>
-    <?php endif; ?>
-    
-    
-    <?php if ($permission['processos']): ?>
+
         <li class="nav-item <?= ($active === 'processos') ? 'active' : ''; ?>">
             <a href="<?= site_url('processos'); ?>" class="nav-link">
                 <i class="nav-icon bi bi-bank"></i> <p>Processos</p>
             </a>
         </li>
-    <?php endif; ?>
 
-    <?php if ($permission['intimacoes']): ?>
         <li class="nav-item <?= in_array($active, ['intimacoes', 'receberintimacoes', 'receberintimacoesjs']) ? 'menu-is-opening menu-open' : ''; ?>">
             <a href="<?= site_url('intimacoes'); ?>" class="nav-link <?= ($active === 'intimacoes') ? 'active' : ''; ?>">
                 <i class="nav-icon bi bi-cloud-arrow-down"></i>
@@ -62,13 +46,10 @@ $permission = $permitions->permission();
                 </li>
             </ul>
         </li>
-    <?php endif; ?>
 
-    <?php if ($permission['tarefas']): ?>
         <li class="nav-item <?= ($active === 'tarefas') ? 'active' : ''; ?>">
             <a href="<?= site_url('tarefas'); ?>" class="nav-link">
                 <i class="nav-icon bi bi-check2-square"></i><p>Tarefas</p>
             </a>
         </li>
-    <?php endif; ?>
 </ul>

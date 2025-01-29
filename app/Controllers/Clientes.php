@@ -3,19 +3,20 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Log\Logger;
 use Exception;
+use Psr\Log\LoggerTrait;
 
 class Clientes extends BaseController
 {
     public function index()
     {
         $data = [
-            'img'       => 'vazio.png',
             'titulo'    => 'Clientes',
         ];
         $s = $this->request->getGet('s');
         
-        $clientesModel = model('ClientesModel');
+        $clientesModel = model('ClienteModel');
 
         if($s !== null){
             $clientesModel
@@ -38,27 +39,50 @@ class Clientes extends BaseController
 
     public function salvar(){
 
-        $id = $this->request->getPost('id_cliente') ?? null;
+;
+        $id = $this->request->getPost('id') ?? null;
+
+        $data = $this->request->getPost();
+
         
-        if(! is_numeric($id)){
-            $data = $this->request->getPost();
+        $model = model('ClienteModel');
+        
+        if(is_numeric($id)){
+            
             try{
-            model('ClientesModel')->insert($data);
-            return redirect()->to(base_url('clientes'));
+            $model->update($id, $data);
+            
+            
+
+            return redirect()->to(base_url('clientes/editar/' . $id))
+                                ->with('success', 'Processo salvo com sucesso');
             }
             catch(Exception $e){
-                Session()->set(['msg'=> $e]);
-                return redirect()->to(base_url('clientes'));
+                return redirect()   ->back()
+                ->withInput()
+                ->with('error', 'Erro ao salvar processo: ' . $e->getMessage());
+            }
+        }else{
+            try{
+                $model->insert($data);
+                $id = $model->getInsertID();
+                return redirect()->to(base_url('clientes/editar/' . $id))
+                                ->with('success', 'Processo salvo com sucesso');
+            }
+            catch(Exception $e){
+                return redirect()   ->back()
+                ->withInput()
+                ->with('error', 'Erro ao salvar processo: ' . $e->getMessage());
             }
         }
     }
 
-    public function editarCliente($id){
+    public function editar($id){
         $data = [
             'img'       => 'vazio.png',
             'titulo'    => 'Editar Dados do Cliente',
         ];
-        $data['cliente'] = model('ClientesModel')->find($id);
+        $data['cliente'] = model('ClienteModel')->find($id);
         Session()->set(['msg'=> null]);
 
         return view('clientes/consultarClientes', $data);
