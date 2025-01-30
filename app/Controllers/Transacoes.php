@@ -94,6 +94,10 @@ class Transacoes extends BaseController
         $data = [
             'titulo'    => 'Nova Transação',
         ];
+        $cliente = $this->request->getGet('cliente');
+        $imovel = $this->request->getGet('imovel');
+        $data['cliente'] = $cliente;
+        $data['imovel'] = $imovel;
         Session()->set(['msg'=> null]);
         return view('transacoes/consultarTransacao', $data);
     }

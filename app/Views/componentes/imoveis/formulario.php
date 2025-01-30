@@ -1,5 +1,12 @@
+<?php
+
+$clienteGet = $_GET;
+
+?>
+
 <form method="post" id="form_imovel" name="form_imovel" action="<?= site_url('imoveis/salvar') ?>">
     <input type="hidden" name="id" value="<?= $imovel['id'] ?? '' ?>">
+    <input type="hidden" name="clienteGet" value="<?= $clienteGet['cliente'] ?? '' ?>">
     <div class="row mb-3">
         <div class="form-group col">
             <label for="codigo">Código</label>

@@ -38,6 +38,7 @@ class Imoveis extends BaseController
     public function salvar(){
         $id = $this->request->getPost('id') ?? null;
         $data = $this->request->getPost();
+        $cliente = $this->request->getPost('clienteGet');
 
         $model = model('ImovelModel');
         
@@ -46,7 +47,7 @@ class Imoveis extends BaseController
             try{
                 $model->update($id, $data);
                 
-                return redirect()->to(base_url('imoveis/editar/' . $id))
+                return redirect()->to(base_url('transacoes/novo' . $id))
                                 ->with('success', 'Imóvel salvo com sucesso');
             }
 
@@ -61,7 +62,7 @@ class Imoveis extends BaseController
 
                 $model->insert($data);
                 $id = $model->getInsertID();
-                return redirect()->to(base_url('imoveis/editar/' . $id))
+                return redirect()->to('transacoes/novo?cliente=' . $cliente.'&imovel='. $id)
                                 ->with('success', 'Imóvel salvo com sucesso');
             }
 
@@ -89,6 +90,7 @@ class Imoveis extends BaseController
         $data = [
             'titulo'    => 'Novo Imóvel',
         ];
+        $cliente = $this->request->getGet('cliente');
         Session()->set(['msg'=> null]);
         return view('imoveis/consultarImoveis', $data);
     }

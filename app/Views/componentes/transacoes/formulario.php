@@ -1,6 +1,10 @@
 <?php
 $imoveis = model('ImovelModel')->findAll();
 $clientes = model('ClienteModel')->findAll();
+
+$transacao['imovel'] = $transacao['imovel'] ?? $_GET['imovel'];
+$transacao['cliente'] = $transacao['cliente'] ?? array($_GET['cliente']);
+
 ?>
 
 

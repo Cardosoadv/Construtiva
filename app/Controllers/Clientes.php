@@ -61,7 +61,7 @@ class Clientes extends BaseController
 
                 $model->insert($data);
                 $id = $model->getInsertID();
-                return redirect()->to(base_url('clientes/editar/' . $id))
+                return redirect()->to(base_url('imoveis/novo?cliente=' . $id))
                                 ->with('success', 'Processo salvo com sucesso');
             }
 
